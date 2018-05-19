@@ -2,7 +2,7 @@
 This is a skeleton which helps for creating a Rails application using Docker. 
 
 ## How to start ?
-##### 1. Copy `.env.sample` to `.env`.
+#### 1. Copy `.env.sample` to `.env`.
 
 This file contains an example of environment variables. These variables are shared between _Docker_ and _Rails_ and any other soft that might use them.
 Here is the minimal `.env` :
@@ -15,7 +15,7 @@ DB_PORT=5432
 ```
 Be sure to modify Rails configuration in order to use the ENV variables defined in this file.
 
-#### 2.Copy `docker-compose.override.sample.yml` to `docker-compose.override.yml`.
+#### 2. Copy `docker-compose.override.sample.yml` to `docker-compose.override.yml`.
 
 This file is local only. It permits us overriding the values of the `docker-compose.yml`.
 It's useful when you need to specify values linked to the current computer, for instance you can specify
