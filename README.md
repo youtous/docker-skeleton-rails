@@ -30,8 +30,41 @@ GID: 100
 By default the project's name is `rails`, all the containers will have this prefix. You can
 edit this value with the name of your application. 
 
-#### 4. Run `make build`
+#### 4. Run `make create`
 Before running this command, you can specify the gem you want to use in the `Gemfile`.
 
 **Important** : `Gemfile.lock` must exists before starting the build, if missing create it with `touch Gemfile.lock`.
+
+Answer "no" when asked about overwriting files.
+
+#### 5. That's all
+Rails is now installed, you start the stack using `make start`.
+
+You should configure your database with rails env and other things which need configuration.
+
+## How to use
+The **Makefile** provides useful commands during development and deployment.
+
+### Adding a gem
+When you add a gem in `Gemfile`, you need to rebuild the application.
+
+Use `make build` each time you add a gem.
+
+### List of commands
+You can have the list of all the commands with `make help`.
+
+- `make help` : Display help.
+- `make create` : Create the Rails application, see "**How to start ?**".
+- `make stop` : Stop the application.
+- `make stop` : Stop the application.
+- `make start` : Start the application in production mode. The console is detached.
+- `make restart` : Restart the application in development mode. _(if a pid file exists, delete it)_
+- `make run` : Start the application in production mode. _(executes migration and database creation if needed)_
+
+By default, the console is in attached mode when stack is started in development. To detach it, use `make start ARGS="-d"`. 
+
+You can specify other arguments using `ARGS="--your-arguments"` with `make stop|run|stop|restart`.
+
+### Execute commands in container
+
 
