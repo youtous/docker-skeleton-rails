@@ -1,5 +1,5 @@
 #!make
-.PHONY: run stop start build app-build docker-build help restart
+.PHONY: run stop start build app-build docker-build help restart create
 .DEFAULT_GOAL= help
 
 # - name of the Stack. Default is "rails".
@@ -7,7 +7,7 @@ STACK_NAME := "rails"
 
 # Run the application in production mode.
 run:
-	docker-compose -p ${STACK_NAME} -f docker-compose.yml -f docker-compose.override.yml up -d && \
+	docker-compose -p ${STACK_NAME} -f docker-compose.yml -f docker-compose.override.yml up -d ${ARGS} && \
 	make app-build
 
 # Stop the application.
@@ -16,13 +16,18 @@ stop:
 
 # Start the application in development mode.
 start:
-	docker-compose -p ${STACK_NAME} -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.override.yml up ${ARGS }
+	docker-compose -p ${STACK_NAME} -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.override.yml up ${ARGS}
 
 # Restart the application in development mode.
 restart:
 	make stop && \
 	rm tmp/pids/* || true && \
 	make start ${ARGS}
+
+# Creates the Rails application. The name will be the same as the current directory.
+create:
+	make docker-build && \
+	docker-compose -p ${STACK_NAME} run --rm web rails new . && \
 
 # Build the application. This command will stop the stack.
 build:
@@ -35,7 +40,7 @@ build:
 docker-build:
 	docker-compose -p ${STACK_NAME} down && \
 	docker-compose build && \
-	docker-compose -p ${STACK_NAME} run web bundle install --jobs 20 && \
+	docker-compose -p ${STACK_NAME} run --rm web bundle install --jobs 20 --retry 5 && \
 	docker-compose -p ${STACK_NAME} down && \
 	docker image prune -f
 
