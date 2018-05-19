@@ -27,7 +27,7 @@ restart:
 # Creates the Rails application. The name will be the same as the current directory.
 create:
 	make docker-build && \
-	docker-compose -p ${STACK_NAME} run --rm web rails new . && \
+	docker-compose -p ${STACK_NAME} run --rm web rails new .
 
 # Build the application. This command will stop the stack.
 build:
