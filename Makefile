@@ -2,8 +2,8 @@
 .PHONY: run stop start build app-build docker-build help restart create
 .DEFAULT_GOAL= help
 
-# - name of the Stack. Default is "rails".
-STACK_NAME := "rails"
+# - name of the Stack. Default is "rails-app".
+STACK_NAME := "rails-app"
 
 # Run the application in production mode.
 run:
