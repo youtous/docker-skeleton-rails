@@ -1,6 +1,14 @@
 # docker-skeleton-rails
 This is a skeleton which helps for creating a Rails application using Docker. 
 
+## Installation
+Download and remove `.git` folder.
+```
+git clone --depth=1 --branch=master https://github.com/youtous/docker-skeleton-rails.git
+cd docker-skeleton-rails
+rm -Rf .git
+```
+
 ## How to start ?
 #### 1. Copy `.env.sample` to `.env`.
 
