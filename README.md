@@ -17,7 +17,7 @@ Be sure to modify Rails configuration in order to use the ENV variables defined 
 
 #### 2. Copy `docker-compose.override.sample.yml` to `docker-compose.override.yml`.
 
-This file is local only. It permits us overriding the values of the `docker-compose.yml`.
+This file is local. It permits us overriding the values of the `docker-compose.yml`.
 It's useful when you need to specify values linked to the current computer, for instance you can specify
 the user (UID:GID) which the image should use (useful for permissions).
 ```
@@ -38,7 +38,7 @@ Before running this command, you can specify the gem you want to use in the `Gem
 Answer "no" when asked about overwriting files.
 
 #### 5. That's all
-Rails is now installed, you start the stack using `make start`.
+Rails is now installed, you can start the stack using `make start`.
 
 You should configure your database with rails env and other things which need configuration.
 When your database is ready, use `make app-build` in order to create the database and execute migrations.
@@ -60,7 +60,7 @@ You can have the list of all the commands with `make help`.
 - `make stop` : Stop the application.
 - `make app-build` : Execute database creation and migration in the running web container.
 - `make start` : Start the application in production mode. The console is detached.
-- `make restart` : Restart the application in development mode. _(if a pid file exists, delete it)_
+- `make restart` : Restart the application in development mode. _(if a pid file exists, deletes it)_
 - `make run` : Start the application in production mode. _(executes migration and database creation if needed)_
 
 By default, the console is in attached mode when stack is started in development. To detach it, use `make start ARGS="-d"`. 
@@ -69,19 +69,19 @@ You can specify other arguments using `ARGS="--your-arguments"` with `make stop|
 > eg: `make restart ARGS="-d""` will restart the stack in detached mode. 
 
 ### Execute commands in container
-Like any other docker container, you can run a command in a container with :
+Like any other docker container, you can run a command in a container with:
 - `docker-compose -p {STACK_NAME} exec web {your command}` 
 > eg:
 `docker-compose -p rails-app exec web rails help` 
 
-When you debug with `byebug`, you will need to attach the console of the container :
+When you debug with `byebug`, you will need to attach the console of the container:
 - `docker attach rails-app_web_1`
 Exit _(detach)_ with `Ctrl+p + Ctrl+q`
 
 ### Services
 You are free to add or remove services like any other docker-compose stack.
 
-Here is the current services of this stack :
+Here is the current services of this stack:
 
 _development :_
 - **Maildev:** `host_container:1080`
