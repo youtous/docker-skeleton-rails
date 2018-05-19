@@ -27,7 +27,7 @@ UID: 1000
 GID: 100
 ```
 #### 3. _(optional)_ Edit `Makefile` and speficy a `STACK_NAME` value
-By default the project's name is `rails`, all the containers will have this prefix. You can
+By default the project's name is `rails-app`, all the containers will have this prefix. You can
 edit this value with the name of your application. 
 
 #### 4. Run `make create`
@@ -66,6 +66,7 @@ You can have the list of all the commands with `make help`.
 By default, the console is in attached mode when stack is started in development. To detach it, use `make start ARGS="-d"`. 
 
 You can specify other arguments using `ARGS="--your-arguments"` with `make stop|run|stop|restart`.
+> eg: `make restart ARGS="-d""` will restart the stack in detached mode. 
 
 ### Execute commands in container
 Like any other docker container, you can run a command in a container with :
@@ -79,6 +80,8 @@ Exit _(detach)_ with `Ctrl+p + Ctrl+q`
 
 ### Services
 You are free to add or remove services like any other docker-compose stack.
+
+Here is the current services of this stack :
 
 _development :_
 - **Maildev:** `host_container:1080`
