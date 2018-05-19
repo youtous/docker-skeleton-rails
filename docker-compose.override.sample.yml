@@ -1,0 +1,9 @@
+version: '3'
+services:
+   web:
+     build:
+       args:
+         # id -u
+         UID: 1000
+         # id -g
+         GID: 100
