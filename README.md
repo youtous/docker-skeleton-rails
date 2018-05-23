@@ -39,6 +39,7 @@ By default the project's name is `rails-app`, all the containers will have this 
 edit this value with the name of your application. 
 
 #### 4. Run `make create`
+This command will create a new Rails application, files of the Rails framework will be copied in the current directory.
 Before running this command, you can specify the gem you want to use in the `Gemfile`.
 
 **Important** : `Gemfile.lock` must exists before starting the build, if missing create it with `touch Gemfile.lock`.
