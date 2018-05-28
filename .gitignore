@@ -18,6 +18,9 @@
 .env
 .byebug_history
 
+public/assets/**
+
+
 # Intelij
 .idea
 .idea/**

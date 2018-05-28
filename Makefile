@@ -8,20 +8,26 @@ STACK_NAME := "rails-app"
 # Run the application in production mode.
 run:
 	docker-compose -p ${STACK_NAME} -f docker-compose.yml -f docker-compose.override.yml up -d ${ARGS} && \
-	make app-build
+	make app-build && \
+	make compile-assets
 
 # Stop the application.
 stop:
-	docker-compose -p ${STACK_NAME} -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.override.yml down ${ARGS}
+	docker-compose -p ${STACK_NAME} -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.override.yml down ${ARGS} && \
+	rm tmp/pids/* || true
 
 # Start the application in development mode.
 start:
 	docker-compose -p ${STACK_NAME} -f docker-compose.yml -f docker-compose.dev.yml -f docker-compose.override.yml up ${ARGS}
 
+# Restart the application in production mode.
+restart-production:
+	make stop ${ARGS} && \
+	make run ${ARGS}
+
 # Restart the application in development mode.
 restart:
-	make stop && \
-	rm tmp/pids/* || true && \
+	make stop ${ARGS} && \
 	make start ${ARGS}
 
 # Creates the Rails application. The name will be the same as the current directory.
@@ -48,6 +54,11 @@ docker-build:
 app-build:
 	docker-compose -p ${STACK_NAME} exec web rake db:create && \
 	docker-compose -p ${STACK_NAME} exec web rake db:migrate
+
+# Execute the required commands for compiling assets. The stack must be running in production and ready for this command.
+compile-assets:
+	docker-compose -p ${STACK_NAME} exec web rake assets:clean && \
+	docker-compose -p ${STACK_NAME} exec web rake assets:precompile
 
 # Show this help prompt.
 help:
