@@ -65,13 +65,13 @@ You can have the list of all the commands with `make help`.
 
 - `make help` : Display help.
 - `make create` : Create the Rails application, see "**How to start ?**".
-- `make stop` : Stop the application.
-- `make stop` : Stop the application.
+- `make run` : Start the application in production mode. _(executes migration and database creation if needed)_
+- `make start` : Start the application in development mode. The console is detached.
+- `make restart` : Restart the application in production mode. 
+- `make stop` : Stop the application. _(if a pid file exists, deletes it)_
 - `make build` : Build an existing application. It will creates if needed the containers, images, network and data volumes.
 - `make app-build` : Execute database creation and migration in the running web container.
-- `make start` : Start the application in production mode. The console is detached.
-- `make restart` : Restart the application in development mode. _(if a pid file exists, deletes it)_
-- `make run` : Start the application in production mode. _(executes migration and database creation if needed)_
+- `make compile-assets` :  Execute the required commands for compiling assets. The stack must be running in production and ready for this command.
 
 By default, the console is in attached mode when stack is started in development. To detach it, use `make start ARGS="-d"`. 
 
