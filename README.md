@@ -67,7 +67,8 @@ You can have the list of all the commands with `make help`.
 - `make create` : Create the Rails application, see "**How to start ?**".
 - `make run` : Start the application in production mode. _(executes migration and database creation if needed)_
 - `make start` : Start the application in development mode. The console is detached.
-- `make restart` : Restart the application in production mode. 
+- `make restart-production` : Restart the application in production mode. 
+- `make restart` : Restart the application in development mode. 
 - `make stop` : Stop the application. _(if a pid file exists, deletes it)_
 - `make build` : Build an existing application. It will creates if needed the containers, images, network and data volumes.
 - `make app-build` : Execute database creation and migration in the running web container.
